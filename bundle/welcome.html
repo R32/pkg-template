@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Welcome</title>
+	<style type="text/css">
+		html, body {
+			margin: 0;
+			border: 0;
+			padding: 0;
+			height: 100%;
+			font-size: 0;
+		}
+		#mainContainer {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 50%;
+			text-align: center;
+		}
+		#signText {
+			width: 336px;
+			margin: -20px 0 0 0;
+			padding: 6px 4px;
+			font-size: 16px;
+		}
+		#signBtn {
+			margin: -20px 0 0 -1px;
+			padding: 6px 12px;
+			font-size: 16px;
+		}
+	</style>
+</head>
+<body>
+	<div id="mainContainer">
+		<input type="text" id="signText" onkeydown="event.keyCode == 13 && signBtn.click()" />
+		<button type="button" id="signBtn" onclick="signText.value && external.go(signText.value)">Sign in</button>
+	</div>
+</body>
+</html>

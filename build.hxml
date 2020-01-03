@@ -1,0 +1,7 @@
+-dce full
+-cp src
+-D analyzer-optimize
+-D js-es=3
+-lib mix
+-main Main
+-js bundle/main.js
