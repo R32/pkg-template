@@ -22,6 +22,6 @@ class Main {
 			node.setAttribute("id", id);
 			document.body.appendChild(node);
 		}
-		node.appendChild( document.createTextNode( haxe.Log.formatOutput(v, infos)) );
+		node.appendChild( document.createTextNode( haxe.Log.formatOutput(v, infos) + "\n") );
 	}
 }
