@@ -26,9 +26,8 @@ HAXESRC := $(wildcard src/*.hx)
 $(JS): build.hxml $(HAXESRC)
 	haxe build.hxml
 
-HSSSRC  := $(wildcard hss/*.hss)
-$(CSS): $(HSSSRC)
-	hss -output $(DST) $^
+$(CSS): hss/style.hss
+	hss -output $(DST) $<
 
 $(PKG) : rc/pkg.rc $(PKG_DEPENDENCIES)
 	@cd rc && cmd /c build.bat $(BAT_ARGUMENT)
