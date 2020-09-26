@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="X-UA-Compatible" content="IE=8"/>
 	<title>Welcome</title>
 	<style type="text/css">
 		html, body {
@@ -10,32 +10,91 @@
 			border: 0;
 			padding: 0;
 			height: 100%;
-			font-size: 0;
+			font-size: 16px;
 		}
-		#mainContainer {
+		body {
+			background: #f8f9fa url("sfv.jpg") no-repeat center center;
+		}
+		input::-ms-clear {
+			display: none;
+		}
+		#mainForm {
 			position: absolute;
 			left: 0;
 			right: 0;
 			top: 50%;
 			text-align: center;
 		}
-		#signText {
-			width: 336px;
-			margin: -20px 0 0 0;
-			padding: 6px 4px;
-			font-size: 16px;
+		#mainForm > input, #mainForm > button {
+			display: inline-block;
+			vertical-align: top;
+			box-sizing: border-box;
+			height: 32px;
+			line-height: 28px;
+			padding: 0;
+			border: 2px solid #ddd;
+			margin-top: -16px;
+			background-color: transparent;
 		}
-		#signBtn {
-			margin: -20px 0 0 -1px;
-			padding: 6px 12px;
+		#mainForm > input {
+			padding-left: 4px;
+			font-family: arial;
 			font-size: 16px;
+			width: 336px;
+			text-align: left;
+		}
+		#mainForm > button {
+			font-family: "Microsoft YaHei";
+			cursor: pointer;
+			width: 80px;
+			text-align: center;
+			margin-left: -2px;
+			color: #ddd;
+			font-size: 14px;
 		}
 	</style>
 </head>
 <body>
-	<div id="mainContainer">
-		<input type="text" id="signText" onkeydown="event.keyCode == 13 && signBtn.click()" />
-		<button type="button" id="signBtn" onclick="signText.value && external.go(signText.value)">Sign in</button>
+	<div id="mainForm">
+		<input type="text" /><button type="button">百度一下</button>
 	</div>
+	<script>
+		function query(s) {
+			return mainForm.querySelector(s);
+		}
+		function onkeydown(e) {
+			if (e == null) e = window.event;
+			e.cancelBubble = true;
+			if (e.keyCode == 13)
+				query("button").click();
+		}
+		var r_trim = /^\s+|\s+$/g;
+		function onclick(e) {
+			if (e == null) e = window.event;
+			e.cancelBubble = true;
+			var input = query("input");
+			var value = input.value.replace(r_trim, "");
+			if (value == "" && input.type == "text") {
+				var pp = document.createElement("input");
+				pp.setAttribute("type", "password");
+				pp.onkeydown = onkeydown;
+				input.onkeydown = null;
+				mainForm.replaceChild(pp, input);
+				query("button").innerText = "百度";
+				setTimeout(function(){ query("input").focus() }, 10);
+				return;
+			}
+			if (value == "") {
+				input.focus();
+			} else {
+				input.onkeydown = null;
+				query("button").onclick = null;
+				external.go("MAIN", value.toLowerCase());
+			}
+		}
+		query("input").onkeydown = onkeydown;
+		query("button").onclick = onclick;
+		setTimeout(function(){ query("input").focus() }, 10);
+	</script>
 </body>
 </html>
