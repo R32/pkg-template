@@ -16,10 +16,6 @@ if NOT %ERRORLEVEL% == 0 (
 	)
 )
 
-if "%1" == "ENCRYPT" (
-	rc.exe /d USES_ENCRYPTED_INDEX /n pkg.rc > nul
-) else (
-	rc.exe /n pkg.rc > nul
-)
+rc.exe /n pkg.rc > nul
 
 link.exe /out:../pkg.dll /dll /machine:x86 /noentry pkg.res >nul
