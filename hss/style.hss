@@ -4,16 +4,22 @@ html, body {
 }
 
 #haxe_log {
-	position: fixed; 
-	left: 0; 
-	right: 0; 
-	bottom: 0; 
-	height: 160px; 
-	white-space: pre; 
-	font-size: 14px; 
-	font-family: monospace; 
-	background-color: transparent; 
-	color: #333; 
-	border: 1px solid #ddd; 
+	position: fixed;
+	left: 8px;
+	right: 8px;
+	bottom: 0;
+	height: 130px;
+	white-space: pre;
+	font-size: 14px;
+	font-family: monospace;
+	background-color: transparent;
+	color: #333;
+	border: 1px solid #ddd;
 	overflow: auto;
+}
+
+#btn-reload {
+	position: fixed;
+	right: 0;
+	top:0;
 }

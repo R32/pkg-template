@@ -1,15 +1,10 @@
 package;
 
 import js.Browser.document;
-import js.mix.External;
 
 class Main {
 	static function main() {
 		haxe.Log.trace = log;
-
-		if (External.available) {
-			External.misc.setTitle("demo");
-		}
 
 		trace("try haxe");
 	}
