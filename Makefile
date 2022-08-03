@@ -3,9 +3,11 @@ PKG       := pkg.dll
 DST       := bundle
 JS        := $(DST)/main.js
 CSS       := $(DST)/style.css
+# make ARCH=x64
+ARCH      ?=
 
 # Files to be packaged into DLL
-FILES_SRC := $(DST)/index.html $(DST)/polyfill.js $(JS) $(CSS)
+FILES_SRC := $(DST)/index.html $(JS) $(CSS)
 
 all: $(JS) $(CSS) $(PKG)
 
@@ -22,5 +24,5 @@ $(CSS): hss/style.hss
 	hss -output $(DST) $<
 
 $(PKG): rc/pkg.rc $(FILES_SRC)
-	@cd rc && cmd /c build.bat
+	@cd rc && cmd /c build.bat $(ARCH)
 	@echo ">" $@

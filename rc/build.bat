@@ -1,6 +1,12 @@
 @echo off
 setlocal enabledelayedexpansion
 
+set ARCH=x86
+IF "%1"=="x64" (
+	set ARCH=x64
+)
+@echo %ARCH%
+
 where rc.exe >nul 2>nul
 
 if NOT %ERRORLEVEL% == 0 (
@@ -11,11 +17,11 @@ if NOT %ERRORLEVEL% == 0 (
 			set INSTALLPATH=%%F
 		)
 		if exist "!INSTALLPATH!\Common7\Tools\VsDevCmd.bat" (
-			call "!INSTALLPATH!\Common7\Tools\VsDevCmd.bat" -arch=x86 -app_platform=Desktop -no_logo
+			call "!INSTALLPATH!\Common7\Tools\VsDevCmd.bat" -arch=%ARCH% -app_platform=Desktop -no_logo
 		)
 	)
 )
 
-rc.exe /n pkg.rc > nul
+rc.exe /n pkg.rc >nul
 
-link.exe /out:../pkg.dll /dll /machine:x86 /noentry pkg.res >nul
+link.exe /out:../pkg.dll /dll /machine:%ARCH% /noentry pkg.res >nul
